@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { ThreeMFLoader } from "three/examples/jsm/Addons.js";
-import Stats  from "stats.js";
+import Stats from "stats.js";
 
 // ----- 주제: 초당 프레임 수 보기
 
@@ -44,7 +44,7 @@ export default function example() {
   });
   const mesh = new THREE.Mesh(geometry, material);
   scene.add(mesh);
-  
+
   //Stats
   const stats = new Stats();
   document.body.append(stats.domElement);
