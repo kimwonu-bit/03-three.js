@@ -24,9 +24,8 @@ export default function example() {
     0.1,
     1000
   );
-  camera.position.x = 1;
-  camera.position.y = 3;
-  camera.position.z = 0;
+  camera.position.y = 1;
+  camera.position.z = 5;
   scene.add(camera);
 
   //light
@@ -44,11 +43,8 @@ export default function example() {
     color: "seagreen",
   });
   const mesh = new THREE.Mesh(geometry, material);
-  mesh.position.x = 2;
   scene.add(mesh);
-
-  //mesh 보게 하기
-  camera.lookAt(mesh.position);
+  
 
   // 그리기
   const clock = new THREE.Clock();
