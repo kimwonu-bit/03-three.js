@@ -1,8 +1,8 @@
 import * as THREE from "three";
 import { ThreeMFLoader } from "three/examples/jsm/Addons.js";
-import Stats from "stats.js";
+import dat from "dat.gui";
 
-// ----- 주제: 초당 프레임 수 보기
+// ----- 주제: gui 컨트롤
 
 export default function example() {
   // Renderer
@@ -45,18 +45,23 @@ export default function example() {
   const mesh = new THREE.Mesh(geometry, material);
   scene.add(mesh);
 
-  //Stats
-  const stats = new Stats();
-  document.body.append(stats.domElement);
+  //   Dat GUI
+  const gui = new dat.GUI();
+  gui.add(mesh.position, "x", -5, 5, 0.001);
+  gui.add(mesh.position, "y", -5, 5, 0.001).name("mesh의 y위치");
+  //   gui.add(mesh.position,'z', -5,5,0.001);
+  gui.add(mesh.position, "z").min(-10).max(3).step(0.01).name("mesh의 z위치");
+
+  gui.add(camera.position, "x", -10, 10, 0.001).name("카메라 x");
 
   // 그리기
   const clock = new THREE.Clock();
 
   function draw() {
     const time = clock.getElapsedTime();
-    stats.update();
     mesh.rotation.y = time;
 
+    camera.lookAt(mesh.position);
     renderer.render(scene, camera);
     window.requestAnimationFrame(draw);
   }
